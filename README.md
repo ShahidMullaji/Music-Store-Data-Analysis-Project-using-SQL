@@ -54,27 +54,11 @@ Here are the questions I answered with SQL in this project:
 - For the artist spend query, I had to use `unit_price * quantity` from `invoice_line` instead of the invoice's total amount. Using the invoice total would have counted the same invoice multiple times if it had tracks from different artists, which would give a wrong number.
 - The Rock genre queries show that filtering through `genre_id` and joining it all the way up to `artist` needs quite a few joins (track → genre, track → album → artist), so getting the join order and keys right mattered a lot.
 
-## Project Structure
-
-```
-onlinemusic.sql
-```
-
-All the queries for this project are in the single `onlinemusic.sql` file, with comments above each query explaining what business question it answers.
-
-## How to Run
-
-1. Set up a PostgreSQL database with the online music store schema (customer, invoice, track, artist, genre, etc.).
-2. Open `onlinemusic.sql` in pgAdmin or any PostgreSQL client.
-3. Run the queries one by one — each one is separated and commented with the question it's answering.
 
 ## What I Learned
 
 - How to join multiple tables correctly to trace a relationship (like going from a track all the way to its artist through album and genre).
-- The difference between using `invoice.total` and calculating the actual amount from `invoice_line.unit_price * quantity` — and why it matters when you're grouping by something other than the invoice itself.
+- The difference between using `invoice.total` and calculating the actual amount from `invoice_line.unit_price * quantity`  and why it matters when you're grouping by something other than the invoice itself.
 - Using `GROUP BY` with aggregate functions like `SUM`, `COUNT`, and `AVG` to answer specific questions instead of just summarizing everything.
 - Using a subquery to compare each row against an average value (used this for finding tracks longer than the average song length).
 
-## Author
-
-Mohammad Shahid
